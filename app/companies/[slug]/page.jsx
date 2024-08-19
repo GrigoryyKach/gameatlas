@@ -96,7 +96,7 @@ export default function PostPage() {
 
     async function fetchPost() {
       try {
-        const res = await fetch(`/api/posts/${slug}`);
+        const res = await fetch(`/api/companies/${slug}`);
         const data = await res.json();
         setPost(data);
       } catch (error) {
@@ -115,37 +115,14 @@ export default function PostPage() {
     <div className="post container mx-auto flex gap-8 mb-14">
       {/* Основной контент */}
       <article className="w-full md:w-5/6">
-        <h1 className="text-4xl font-bold mb-5">{post.title}</h1>
-
-        {/* genres */}
-        <ul className="flex gap-2 mb-4">
-          {post.genres.map((genre, idx) => (
-            <a
-              href={`/genres/${slugify(genre)}`}
-            >
-              <li
-                key={idx}
-                className="py-[6px] px-[12px] bg-accent hover:bg-accent-hover rounded-lg text-sm"
-              >
-                {genre}
-              </li>
-            </a>
-          ))}
-        </ul>
+        <h1 className="text-4xl font-bold mb-5">{post.name}</h1>
 
         {/* date */}
-        <div className='flex flex-row mb-8 gap-4 items-center'>
-          <p className="text-[#696A75]">
-            {post.author_name}
-          </p>
-          |
-          <p className='text-[#696A75]'>
-            {formatDate(post.created_at)}
-          </p>
-        </div>
+        <p className="text-[#696A75] mb-8">
+          {post.author_name}
+        </p>
 
         {/* content */}
-        {/* <div className='text-[#BABABF]' dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} /> */}
         <div className='text-[#BABABF]'>
           {renderContent(post.content)}
         </div>
@@ -155,36 +132,7 @@ export default function PostPage() {
       <aside className="w-full md:w-1/4 flex-shrink-0">
         <div className="sticky top-20">
           <h2 className="text-2xl font-semibold mb-4">Информация</h2>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата выхода:</span> {post.release_date}</p>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Разработчики:</span> {}
-            <a
-              href={`/companies/${slugify(post.developers)}`}
-              className='text-accent hover:text-accent-hover'
-            >
-              {post.developers}
-            </a>
-          </p>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Издатель:</span> {}
-            <a
-              href={`/companies/${slugify(post.publisher)}`}
-              className='text-accent hover:text-accent-hover'
-            >
-              {post.publisher}
-            </a>
-          </p>
-          <span className='font-bold'>Платформы:</span>
-          <ul>
-            {post.platforms.map((platform, idx) => (
-              <li key={idx}>
-                <a
-                  href={`/platforms/${slugify(platform)}`}
-                  className='text-accent hover:text-accent-hover'
-                >
-                  {platform}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата основания:</span> {post.open_date}</p>
         </div>
       </aside>
     </div>
