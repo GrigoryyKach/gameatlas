@@ -11,8 +11,8 @@ const worksans = Play({
 });
 
 export const metadata = {
-  title: "PlayLog",
-  description: "PlayLog App",
+  title: "GameAtlas",
+  description: "GameAtlas App",
 };
 
 export default function RootLayout({ children }) {
