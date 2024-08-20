@@ -26,10 +26,10 @@ export default function Posts() {
   }, []);
 
   return (
-    <section className="h-full">
+    <section className="h-full mb-14">
       <div className="container mx-auto h-full">
         <h1 className="text-2xl font-bold mb-8">All Posts</h1>
-        <div className="grid grid-cols-3 items-center gap-[20px]">
+        <div className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 items-center gap-[20px]">
           {latestPosts.map((post, idx) => {
             return (
               <PostCard key={idx} post={post} />

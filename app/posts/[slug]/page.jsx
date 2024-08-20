@@ -112,7 +112,7 @@ export default function PostPage() {
   if (!post) return <p>Загрузка...</p>;
 
   return (
-    <div className="post container mx-auto flex gap-8 mb-14">
+    <div className="post container mx-auto flex flex-col-reverse md:flex-row gap-8 mb-14">
       {/* Основной контент */}
       <article className="w-full md:w-5/6">
         <h1 className="text-4xl font-bold mb-5">{post.title}</h1>
