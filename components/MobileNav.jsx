@@ -9,24 +9,24 @@ import { CiMenuFries } from "react-icons/ci";
 
 const links = [
   {
-    name: "home",
+    name: "Главная",
     path: "/",
   },
   {
-    name: "posts",
+    name: "Посты",
     path: "/posts",
   },
   {
-    name: "genres",
+    name: "Жанры",
     path: "/genres",
   },
   {
-    name: "platforms",
+    name: "Платформы",
     path: "/platforms",
   },
   {
-    name: "termins",
-    path: "/termins",
+    name: "Термины",
+    path: "/terms",
   },
 ]
 

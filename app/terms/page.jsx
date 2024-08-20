@@ -27,7 +27,7 @@ const Termins = () => {
           {termins.map((termins, idx) => {
             return (
               <li key={idx}>
-                <Link href={`/termins/${termins.slug}`}>
+                <Link href={`/terms/${termins.slug}`}>
                   {termins.name}
                 </Link>
               </li>
