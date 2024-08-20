@@ -17,11 +17,11 @@ const PostCard = ({ post }) => {
   return (
     <Link
       href={`/posts/${slug}`}
-      className="p-4 flex flex-col border border-[#242535] rounded-lg"
+      className="p-4 flex flex-col items-center border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
     >
       <Image
         src={`/${image}`}
-        className="w-[360px] object-contain rounded-md mb-4"
+        className="w-[360px] object-contain rounded-md mb-4 flex"
         alt={title}
         width={360}
         height={240}
@@ -36,7 +36,7 @@ const PostCard = ({ post }) => {
           </li>
         ))}
       </ul>
-      <h2 className="font-semibold text-2xl mb-5">{title}</h2>
+      <h2 className="font-semibold text-2xl mb-5 line-clamp-1 overflow-hidden">{title}</h2>
 
       <p className="text-[#97989F]">
         {formatDate(created_at)}

@@ -22,14 +22,18 @@ const Genres = () => {
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
-      <h1 className="text-2xl font-bold mb-8">All Genres</h1>
-        <div className="grid grid-cols-3 items-center gap-[20px]">
+        <h1 className="text-2xl font-bold mb-8">All Genres</h1>
+        <ul className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 text-center items-center gap-[20px]">
           {genres.map((genre, idx) => {
             return (
-              <Link href={`/genres/${genre.slug}`} key={idx}>{genre.name}</Link>
+              <li key={idx}>
+                <Link href={`/genres/${genre.slug}`}>
+                  {genre.name}
+                </Link>
+              </li>
             )
           })}
-        </div>
+        </ul>
       </div>
     </section>
   )
