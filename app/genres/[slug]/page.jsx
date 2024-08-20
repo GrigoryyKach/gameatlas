@@ -2,12 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const options = { year: 'numeric', 'month': 'long', day: 'numeric' };
-  return date.toLocaleDateString('en-EN', options);
-};
+import { FaArrowCircleUp } from 'react-icons/fa';
 
 const renderContent = (content) => {
   return content.map((node, index) => {
@@ -98,6 +93,10 @@ export default function PostPage() {
     fetchPost();
   }, [slug]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   if (!post) return <p>Загрузка...</p>;
 
   return (
@@ -116,6 +115,10 @@ export default function PostPage() {
           {renderContent(post.content)}
         </div>
       </article>
+      <FaArrowCircleUp
+        onClick={scrollToTop}
+        className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
+      />
     </div>
   );
 }

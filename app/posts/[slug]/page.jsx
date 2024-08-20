@@ -3,6 +3,8 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { FaArrowCircleUp } from "react-icons/fa";
+
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const options = { year: 'numeric', 'month': 'long', day: 'numeric' };
@@ -107,6 +109,10 @@ export default function PostPage() {
     fetchPost();
   }, [slug]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   // console.log(post.content);
 
   if (!post) return <p>Загрузка...</p>;
@@ -152,11 +158,11 @@ export default function PostPage() {
       </article>
 
       {/* Боковая колонка */}
-      <aside className="w-full md:w-1/4 flex-shrink-0">
+      <aside className="w-full md:w-1/4 flex-shrink-0 relative">
         <div className="sticky top-20">
           <h2 className="text-2xl font-semibold mb-4">Информация</h2>
           <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата выхода:</span> {post.release_date}</p>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Разработчики:</span> {}
+          <p className='text-[#BABABF]'><span className='font-bold text-white'>Разработчики:</span> { }
             <a
               href={`/companies/${slugify(post.developers)}`}
               className='text-accent hover:text-accent-hover'
@@ -164,7 +170,7 @@ export default function PostPage() {
               {post.developers}
             </a>
           </p>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Издатель:</span> {}
+          <p className='text-[#BABABF]'><span className='font-bold text-white'>Издатель:</span> { }
             <a
               href={`/companies/${slugify(post.publisher)}`}
               className='text-accent hover:text-accent-hover'
@@ -186,7 +192,12 @@ export default function PostPage() {
             ))}
           </ul>
         </div>
+      <FaArrowCircleUp
+        onClick={scrollToTop}
+        className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
+      />
       </aside>
+
     </div>
   );
 }

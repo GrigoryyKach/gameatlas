@@ -2,12 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const options = { year: 'numeric', 'month': 'long', day: 'numeric' };
-  return date.toLocaleDateString('en-EN', options);
-};
+import { FaArrowCircleUp } from 'react-icons/fa';
 
 const renderContent = (content) => {
   return content.map((node, index) => {
@@ -78,15 +73,6 @@ const renderContent = (content) => {
   });
 };
 
-const slugify = (text) => {
-  return text
-    .toLowerCase() // Привести к нижнему регистру
-    .replace(/\s+/g, '-') // Заменить пробелы на тире
-    .replace(/[^\w\-]+/g, '') // Удалить все не буквенно-цифровые символы
-    .replace(/\-\-+/g, '-') // Заменить несколько тире на одно
-    .trim(); // Удалить начальные и конечные тире
-};
-
 export default function PostPage() {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
@@ -106,6 +92,10 @@ export default function PostPage() {
 
     fetchPost();
   }, [slug]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   // console.log(post.content);
 
@@ -129,11 +119,16 @@ export default function PostPage() {
       </article>
 
       {/* Боковая колонка */}
-      <aside className="w-full md:w-1/4 flex-shrink-0">
+      <aside className="w-full md:w-1/4 flex-shrink-0 relative">
         <div className="sticky top-20">
           <h2 className="text-2xl font-semibold mb-4">Информация</h2>
           <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата основания:</span> {post.open_date}</p>
         </div>
+
+        <FaArrowCircleUp
+        onClick={scrollToTop}
+        className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
+      />
       </aside>
     </div>
   );
