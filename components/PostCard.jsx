@@ -17,7 +17,7 @@ const PostCard = ({ post }) => {
   return (
     <Link
       href={`/posts/${slug}`}
-      className="p-4 flex flex-col items-center border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
+      className="p-4 flex flex-col items-center md:items-start border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
     >
       <Image
         src={`/${image}`}
