@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaArrowCircleUp } from 'react-icons/fa';
+import { Skeleton } from '../../../components/ui/skeleton';
 
 const renderContent = (content) => {
   return content.map((node, index) => {
@@ -97,11 +98,22 @@ export default function PostPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  if (!post) return <p>Загрузка...</p>;
+  if (!post) {
+    return (
+      <div className="post container mx-auto">
+        <article className="w-full">
+          <Skeleton className="h-10 w-2/3 mb-5" />
+          <Skeleton className="h-6 w-1/3 mb-4" />
+          <Skeleton className="h-6 w-1/4 mb-8" />
+          <Skeleton className="h-16 w-full mb-2" />
+        </article>
+      </div>
+    );
+  };
 
   return (
     <div className="post container mx-auto mb-14">
-      <article className="w-full md:w-5/6">
+      <article className="w-full">
         <h1 className="text-4xl font-bold mb-5">{post.name}</h1>
 
         {/* author */}

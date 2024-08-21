@@ -22,7 +22,7 @@ const Genres = () => {
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
-        <h1 className="text-2xl font-bold mb-8">All Genres</h1>
+        <h1 className="text-2xl font-bold mb-8">Жанры</h1>
         <ul className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 text-center items-center gap-[20px]">
           {genres.map((genre, idx) => {
             return (

@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { FaArrowCircleUp } from "react-icons/fa";
+import { Skeleton } from '../../../components/ui/skeleton';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -82,12 +83,12 @@ const renderContent = (content) => {
 
 const slugify = (text) => {
   return text
-  .toLowerCase() // Привести к нижнему регистру
-  .replace(/'/g, '-') // Заменить одиночные кавычки на тире
-  .replace(/\s+/g, '-') // Заменить пробелы на тире
-  .replace(/[^\w\-]+/g, '') // Удалить все не буквенно-цифровые символы
-  .replace(/\-\-+/g, '-') // Заменить несколько тире на одно
-  .trim(); // Удалить начальные и конечные тире
+    .toLowerCase() // Привести к нижнему регистру
+    .replace(/'/g, '-') // Заменить одиночные кавычки на тире
+    .replace(/\s+/g, '-') // Заменить пробелы на тире
+    .replace(/[^\w\-]+/g, '') // Удалить все не буквенно-цифровые символы
+    .replace(/\-\-+/g, '-') // Заменить несколько тире на одно
+    .trim(); // Удалить начальные и конечные тире
 };
 
 export default function PostPage() {
@@ -114,9 +115,28 @@ export default function PostPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // console.log(post.content);
-
-  if (!post) return <p>Загрузка...</p>;
+  if (!post) {
+    return (
+      <div className="post container mx-auto flex flex-col-reverse md:flex-row gap-8 mb-14">
+        <article className="w-full md:w-5/6">
+          <Skeleton className="h-10 w-2/3 mb-5" />
+          <Skeleton className="h-6 w-1/3 mb-4" />
+          <Skeleton className="h-6 w-1/4 mb-8" />
+          <Skeleton className="h-96 w-full mb-2" />
+          <Skeleton className="h-56 w-full mb-2" />
+          <Skeleton className="h-6 w-2/3 mb-2" />
+        </article>
+        <aside className="w-full md:w-1/4 flex-shrink-0">
+          <Skeleton className="h-6 w-full mb-4" />
+          <Skeleton className="h-6 w-1/2 mb-2" />
+          <Skeleton className="h-6 w-full mb-2" />
+          <Skeleton className="h-6 w-2/3 mb-2" />
+          <Skeleton className="h-6 w-3/4 mb-2" />
+          <Skeleton className="h-6 w-3/4 mb-2" />
+        </aside>
+      </div>
+    );
+  };
 
   return (
     <div className="post container mx-auto flex flex-col-reverse md:flex-row gap-8 mb-14">
@@ -140,7 +160,7 @@ export default function PostPage() {
           ))}
         </ul>
 
-        {/* date */}
+        {/* author & date */}
         <div className='flex flex-row mb-8 gap-4 items-center'>
           <p className="text-[#696A75]">
             {post.author_name}
@@ -153,7 +173,7 @@ export default function PostPage() {
 
         {/* content */}
         {/* <div className='text-[#BABABF]' dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} /> */}
-        <div className='text-[#BABABF]'>
+        <div className='text-text'>
           {renderContent(post.content)}
         </div>
       </article>
@@ -162,8 +182,8 @@ export default function PostPage() {
       <aside className="w-full md:w-1/4 flex-shrink-0 relative">
         <div className="sticky top-20">
           <h2 className="text-2xl font-semibold mb-4">Информация</h2>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата выхода:</span> {post.release_date}</p>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Разработчики:</span> { }
+          <p className='text-text'><span className='font-bold text-white'>Дата выхода:</span> {post.release_date}</p>
+          <p className='text-text'><span className='font-bold text-white'>Разработчики:</span> { }
             <a
               href={`/companies/${slugify(post.developers)}`}
               className='text-accent hover:text-accent-hover'
@@ -171,7 +191,7 @@ export default function PostPage() {
               {post.developers}
             </a>
           </p>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Издатель:</span> { }
+          <p className='text-text'><span className='font-bold text-white'>Издатель:</span> { }
             <a
               href={`/companies/${slugify(post.publisher)}`}
               className='text-accent hover:text-accent-hover'
@@ -193,10 +213,10 @@ export default function PostPage() {
             ))}
           </ul>
         </div>
-      <FaArrowCircleUp
-        onClick={scrollToTop}
-        className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
-      />
+        <FaArrowCircleUp
+          onClick={scrollToTop}
+          className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
+        />
       </aside>
 
     </div>
