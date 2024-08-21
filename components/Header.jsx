@@ -21,7 +21,9 @@ const Header = () => {
         (suggestionBoxRef.current && !suggestionBoxRef.current.contains(event.target)) &&
         (inputRef.current && !inputRef.current.contains(event.target))
       ) {
-        setSuggestions([]);
+        setTimeout(() => {
+          setSuggestions([]);
+        }, 100);
       }
     };
 
