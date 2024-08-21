@@ -8,11 +8,43 @@ export default async function handler(req, res) {
   }
 
   try {
-    const postResults = await query('SELECT title, slug, "post" AS source FROM post WHERE title ILIKE $1', [`%${term}%`]);
-    const terminResults = await query('SELECT name AS title, slug, "termin" AS source FROM termin WHERE name ILIKE $1', [`%${term}%`]);
-    const genreResults = await query('SELECT name AS title, slug, "genre" AS source FROM genre WHERE name ILIKE $1', [`%${term}%`]);
+    const postResults = await query(`
+      SELECT title, slug, 'post' AS source 
+      FROM post 
+      WHERE title ILIKE $1
+    `, [`%${term}%`]);
 
-    const results = [...postResults.rows, ...terminResults.rows, ...genreResults.rows];
+    const termsResults = await query(`
+      SELECT name AS title, slug, 'termin' AS source 
+      FROM termin 
+      WHERE name ILIKE $1
+    `, [`%${term}%`]);
+
+    const genreResults = await query(`
+      SELECT name AS title, slug, 'genre' AS source 
+      FROM genre 
+      WHERE name ILIKE $1
+    `, [`%${term}%`]);
+
+    const platformResults = await query(`
+      SELECT name AS title, slug, 'platform' AS source 
+      FROM platform 
+      WHERE name ILIKE $1
+    `, [`%${term}%`]);
+
+    const companyResults = await query(`
+      SELECT name AS title, slug, 'company' AS source 
+      FROM company 
+      WHERE name ILIKE $1
+    `, [`%${term}%`]);
+
+    const results = [
+      ...postResults.rows,
+      ...termsResults.rows,
+      ...genreResults.rows,
+      ...platformResults.rows,
+      ...companyResults.rows
+    ];
 
     res.status(200).json(results);
   } catch (err) {

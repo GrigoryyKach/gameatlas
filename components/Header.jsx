@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,6 +12,24 @@ import { Input } from "./ui/input";
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const inputRef = useRef(null);
+  const suggestionBoxRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        (suggestionBoxRef.current && !suggestionBoxRef.current.contains(event.target)) &&
+        (inputRef.current && !inputRef.current.contains(event.target))
+      ) {
+        setSuggestions([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleInputChange = async (e) => {
     const term = e.target.value;
@@ -21,6 +39,7 @@ const Header = () => {
       const res = await fetch(`/api/search?term=${term}`);
       const data = await res.json();
       setSuggestions(data);
+      console.log(suggestions);
     } else {
       setSuggestions([]);
     }
@@ -32,14 +51,23 @@ const Header = () => {
     }
   };
 
+  const handleSuggestionClick = () => {
+    setSearchTerm('');
+    setSuggestions([]);
+  };
+
   const getLinkPath = (table, slug) => {
     switch (table) {
-      case 'posts':
+      case 'post':
         return `/posts/${slug}`;
-      case 'termins':
-        return `/termins/${slug}`;
-      case 'genres':
+      case 'termin':
+        return `/terms/${slug}`;
+      case 'genre':
         return `/genres/${slug}`;
+      case 'platform':
+        return `/platforms/${slug}`;
+      case 'company':
+        return `/companies/${slug}`;
       default:
         return `/`;
     }
@@ -60,22 +88,30 @@ const Header = () => {
 
         {/* desktop nav & search bar */}
         <div className="hidden xl:flex justify-between items-center gap-20">
-            <Nav />
-          <div className="max-w-[166px]">
+          <Nav />
+          <div className="relative max-w-[166px]">
             <Input
+              ref={inputRef}
               placeholder="Search"
               value={searchTerm}
               onChange={handleInputChange}
               onKeyDown={handleSearch}
             />
             {suggestions.length > 0 && (
-              <ul className="absolute bg-white text-black w-full mt-1 rounded-md shadow-lg">
+              <ul
+                ref={suggestionBoxRef}
+                className="absolute bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
+              >
                 {suggestions.map((suggestion, idx) => (
-                  <li key={idx} className="p-2 hover:bg-gray-200">
-                    <Link href={getLinkPath(suggestion.table, suggestion.slug)}>
+                  <Link
+                    key={idx}
+                    href={`${getLinkPath(suggestion.source, suggestion.slug)}`}
+                    onClick={handleSuggestionClick}
+                  >
+                    <li className="p-2 hover:bg-gray-200 rounded-md">
                       {suggestion.title}
-                    </Link>
-                  </li>
+                    </li>
+                  </Link>
                 ))}
               </ul>
             )}
@@ -84,7 +120,7 @@ const Header = () => {
 
         {/* mobile nav */}
         <div className="xl:hidden">
-            <MobileNav />
+          <MobileNav />
         </div>
       </div>
     </header>
