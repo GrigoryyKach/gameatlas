@@ -94,7 +94,7 @@ const Header = () => {
           <div className="relative max-w-[166px]">
             <Input
               ref={inputRef}
-              placeholder="Search"
+              placeholder="Пошук"
               value={searchTerm}
               onChange={handleInputChange}
               onKeyDown={handleSearch}

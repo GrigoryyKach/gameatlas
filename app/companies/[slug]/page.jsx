@@ -137,8 +137,8 @@ export default function PostPage() {
       {/* Боковая колонка */}
       <aside className="w-full md:w-1/4 flex-shrink-0 relative">
         <div className="sticky top-20">
-          <h2 className="text-2xl font-semibold mb-4">Информация</h2>
-          <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата основания:</span> {post.open_date}</p>
+          <h2 className="text-2xl font-semibold mb-4">Информація</h2>
+          <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата заснування:</span> {post.open_date}</p>
         </div>
 
         <FaArrowCircleUp

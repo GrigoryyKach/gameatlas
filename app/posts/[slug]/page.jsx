@@ -181,9 +181,9 @@ export default function PostPage() {
       {/* Боковая колонка */}
       <aside className="w-full md:w-1/4 flex-shrink-0 relative">
         <div className="sticky top-20">
-          <h2 className="text-2xl font-semibold mb-4">Информация</h2>
-          <p className='text-text'><span className='font-bold text-white'>Дата выхода:</span> {post.release_date}</p>
-          <p className='text-text'><span className='font-bold text-white'>Разработчики:</span> { }
+          <h2 className="text-2xl font-semibold mb-4">Информація</h2>
+          <p className='text-text'><span className='font-bold text-white'>Дата виходу:</span> {post.release_date}</p>
+          <p className='text-text'><span className='font-bold text-white'>Розробники:</span> { }
             <a
               href={`/companies/${slugify(post.developers)}`}
               className='text-accent hover:text-accent-hover'
@@ -191,7 +191,7 @@ export default function PostPage() {
               {post.developers}
             </a>
           </p>
-          <p className='text-text'><span className='font-bold text-white'>Издатель:</span> { }
+          <p className='text-text'><span className='font-bold text-white'>Видавець:</span> { }
             <a
               href={`/companies/${slugify(post.publisher)}`}
               className='text-accent hover:text-accent-hover'
@@ -199,16 +199,20 @@ export default function PostPage() {
               {post.publisher}
             </a>
           </p>
-          <span className='font-bold'>Платформы:</span>
-          <ul>
+          <span className='font-bold'>Платформи: </span>
+          <ul className='inline'>
             {post.platforms.map((platform, idx) => (
-              <li key={idx}>
+              <li
+                key={idx}
+                className='inline'
+              >
                 <a
                   href={`/platforms/${slugify(platform)}`}
                   className='text-accent hover:text-accent-hover'
                 >
                   {platform}
                 </a>
+                {idx < post.platforms.length - 1 && <span>, </span>}
               </li>
             ))}
           </ul>

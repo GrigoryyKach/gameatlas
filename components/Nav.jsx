@@ -5,23 +5,23 @@ import { usePathname } from "next/navigation";
 
 const links = [
   {
-    name: "Главная",
+    name: "головна",
     path: "/",
   },
   {
-    name: "Посты",
+    name: "пости",
     path: "/posts",
   },
   {
-    name: "Жанры",
+    name: "жанри",
     path: "/genres",
   },
   {
-    name: "Платформы",
+    name: "платформи",
     path: "/platforms",
   },
   {
-    name: "Термины",
+    name: "терміни",
     path: "/terms",
   },
 ]

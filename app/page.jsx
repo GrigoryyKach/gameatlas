@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <section className="h-full mb-14">
       <div className="container mx-auto h-full">
-        <h1 className="text-2xl font-bold mb-8">Последние Посты</h1>
+        <h1 className="text-2xl font-bold mb-8">Останні пости</h1>
         <ul className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 items-center gap-[20px]">
         {isLoading ? (
             Array.from({ length: 12 }).map((_, idx) => (
