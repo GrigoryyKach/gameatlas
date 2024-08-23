@@ -147,16 +147,16 @@ export default function PostPage() {
         {/* genres */}
         <ul className="flex gap-2 mb-4">
           {post.genres.map((genre, idx) => (
-            <a
-              href={`/genres/${slugify(genre)}`}
+            <li
+              key={idx}
             >
-              <li
-                key={idx}
-                className="py-[6px] px-[12px] bg-accent hover:bg-accent-hover rounded-lg text-sm"
+              <a
+                href={`/genres/${slugify(genre)}`}
+                className='block py-[6px] px-[12px] hover:bg-accent rounded-lg text-sm border-2 border-accent/30 hover:border-accent transition-all'
               >
                 {genre}
-              </li>
-            </a>
+              </a>
+            </li>
           ))}
         </ul>
 
