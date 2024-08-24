@@ -152,7 +152,7 @@ export default function PostPage() {
             >
               <a
                 href={`/genres/${slugify(genre)}`}
-                className='block py-[6px] px-[12px] hover:bg-accent rounded-lg text-sm border-2 border-accent/30 hover:border-accent transition-all'
+                className='block py-[6px] px-[12px] bg-minibg rounded-lg text-sm border-b-2 border-accent/30 hover:border-accent transition-all'
               >
                 {genre}
               </a>

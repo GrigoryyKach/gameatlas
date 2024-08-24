@@ -23,7 +23,7 @@ const Header = () => {
       ) {
         setTimeout(() => {
           setSuggestions([]);
-        }, 100);
+        }, 1000);
       }
     };
 
