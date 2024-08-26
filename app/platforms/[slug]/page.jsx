@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaArrowCircleUp } from 'react-icons/fa';
 import { Skeleton } from '../../../components/ui/skeleton';
@@ -76,7 +76,9 @@ const renderContent = (content) => {
 
 export default function PostPage() {
   const { slug } = useParams();
+  const router = useRouter();
   const [post, setPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!slug) return;
@@ -84,21 +86,34 @@ export default function PostPage() {
     async function fetchPost() {
       try {
         const res = await fetch(`/api/platforms/${slug}`);
+
+        if (res.status === 404) {
+          router.replace('/404');
+          return;
+        }
+
         const data = await res.json();
-        setPost(data);
+
+        if (!data) {
+          router.replace('/404');
+        } else {
+          setPost(data);
+        }
       } catch (error) {
         console.error('Ошибка при загрузке поста:', error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
     fetchPost();
-  }, [slug]);
+  }, [slug, router]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  if (!post) {
+  if (isLoading) {
     return (
       <div className="post container mx-auto">
         <article className="w-full">
@@ -110,6 +125,10 @@ export default function PostPage() {
       </div>
     );
   };
+
+  if (!post) {
+    return null;
+  }
 
   return (
     <div className="post container mx-auto mb-14">
