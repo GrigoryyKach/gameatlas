@@ -13,6 +13,10 @@ const links = [
     path: "/posts",
   },
   {
+    name: "новини",
+    path: "/news",
+  },
+  {
     name: "жанри",
     path: "/genres",
   },
