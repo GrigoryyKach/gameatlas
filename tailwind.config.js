@@ -23,6 +23,9 @@ module.exports = {
       primary: "var(--font-worksans)",
     },
     extend: {
+      dropShadow: {
+        '3xl': '0 2px 10px rgba(24, 26, 42, 1)',
+      },
       colors: {
         primary: "#181A2A",
         accent: {
