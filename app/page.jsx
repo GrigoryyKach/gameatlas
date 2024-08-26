@@ -24,7 +24,7 @@ export default function Home() {
         const sortedNewsPosts = newsPostData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
         setLastPost(postData);
-        setLatestNews(sortedNewsPosts.slice(0, 3));
+        setLatestNews(sortedNewsPosts.slice(0, 6));
       } catch (error) {
         console.log('Ошибка при загрузке постов:', error);
       } finally {

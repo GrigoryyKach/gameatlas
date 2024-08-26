@@ -19,10 +19,10 @@ const NewsPostCard = ({ post }) => {
     >
       <Image
         src={`/${image}`}
-        className="w-[350px] object-contain rounded-md mb-4"
+        className="w-[350px] h-[240px] object-contain rounded-md mb-4"
         alt={title}
         width={360}
-        height={0}
+        height={240}
         objectFit="cover"
       />
       <div className="flex flex-col items-center xl:items-start">

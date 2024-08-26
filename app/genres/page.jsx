@@ -27,7 +27,7 @@ const Genres = () => {
   }, []);
 
   return (
-    <section className="h-full">
+    <section className="h-full mb-14">
       <div className="container mx-auto h-full">
         <h1 className="text-2xl font-bold mb-8">Жанри</h1>
         <ul className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 text-center items-center gap-[20px]">
