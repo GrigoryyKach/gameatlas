@@ -102,7 +102,7 @@ const Header = () => {
             {suggestions.length > 0 && (
               <ul
                 ref={suggestionBoxRef}
-                className="absolute bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
+                className="absolute z-10 bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
               >
                 {suggestions.map((suggestion, idx) => (
                   <Link
