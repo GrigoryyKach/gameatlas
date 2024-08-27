@@ -170,7 +170,7 @@ export default function PostPage() {
     <div className="post container mx-auto flex flex-col gap-6 mb-14">
       <div className='flex items-center justify-center'>
         <Image
-          src={`/${post.image}`}
+          src={`https://drive.google.com/uc?export=view&id=${post.image}`}
           width={450}
           height={200}
           className='rounded-xl'
