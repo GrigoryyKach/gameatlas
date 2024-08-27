@@ -15,11 +15,11 @@ const NewsPostCard = ({ post }) => {
   return (
     <Link
       href={`/news/${id}`}
-      className="max-w-[384px] p-4 flex flex-col items-center xl:items-start border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
+      className="max-w-[394px] md:max-w-full p-4 flex flex-col items-center xl:items-start border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
     >
       <Image
         src={`https://drive.google.com/uc?export=view&id=${image}`}
-        className="w-[350px] h-[240px] object-contain rounded-md mb-4"
+        className="w-[360px] min-h-[202px] max-h-[202px] object-cover rounded-md mb-4"
         alt={title}
         width={360}
         height={240}

@@ -17,18 +17,18 @@ const PostCard = ({ post }) => {
   return (
     <Link
       href={`/posts/${slug}`}
-      className="p-4 flex flex-col items-center md:items-start border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
+      className="max-w-[394px] md:max-w-full p-4 flex flex-col items-center xl:items-start border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
     >
       <div className="flex justify-center">
         <Image
           src={`/${image}`}
-          className="w-[360px] object-contain rounded-md mb-4"
+          className="w-[360px] max-h-[202px] object-cover rounded-md mb-4"
           alt={title}
           width={360}
           height={240}
         />
       </div>
-      <div className="flex flex-col items-center md:items-start">
+      <div className="flex flex-col items-center xl:items-start">
         <ul className="flex gap-2 mb-4">
           {staticGenres.map((genre, idx) => (
             <li

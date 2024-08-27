@@ -129,7 +129,7 @@ const MobileNav = () => {
 
         {/* nav & search bar */}
         <div className="flex flex-col gap-10">
-          <div className="xl:hidden relative max-w-[166px]">
+          {/* <div className="xl:hidden relative max-w-[166px]">
             <Input
               ref={inputRef}
               placeholder="Пошук"
@@ -155,7 +155,7 @@ const MobileNav = () => {
                 ))}
               </ul>
             )}
-          </div>
+          </div> */}
           <nav className="flex flex-col justify-center items-center gap-8">
             {links.map((link, idx) => {
               return (
