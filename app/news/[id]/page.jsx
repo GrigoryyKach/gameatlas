@@ -211,7 +211,7 @@ export default function PostPage() {
                   className="flex justify-center items-center"
                 >
                   <Image
-                    src={`/${img}`}
+                    src={`https://drive.google.com/uc?export=view&id=${img}`}
                     alt={`Image ${idx + 1}`}
                     width={600}
                     height={400}
@@ -235,11 +235,11 @@ export default function PostPage() {
                 className={`box-border p-1 ${currentIndex === idx ? 'border-2 border-accent' : ''}`}
               >
                 <Image
-                  src={`/${img}`}
+                  src={`https://drive.google.com/uc?export=view&id=${img}`}
                   width={100}
-                  height={67}
+                  height={60}
                   alt={`Thumbnail ${idx + 1}`}
-                  className="box-border object-cover"
+                  className="box-border object-cover max-h-[60px]"
                 />
               </div>
             ))}
