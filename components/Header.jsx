@@ -41,7 +41,6 @@ const Header = () => {
       const res = await fetch(`/api/search?term=${term}`);
       const data = await res.json();
       setSuggestions(data);
-      console.log(suggestions);
     } else {
       setSuggestions([]);
     }
@@ -91,40 +90,11 @@ const Header = () => {
         {/* desktop nav & desktop search bar */}
         <div className="hidden xl:flex justify-between items-center gap-20">
           <Nav />
-          <div className="relative max-w-[166px]">
-            <Input
-              ref={inputRef}
-              placeholder="Пошук"
-              value={searchTerm}
-              onChange={handleInputChange}
-              onKeyDown={handleSearch}
-            />
-            {suggestions.length > 0 && (
-              <ul
-                ref={suggestionBoxRef}
-                className="absolute z-10 bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
-              >
-                {suggestions.map((suggestion, idx) => (
-                  <Link
-                    key={idx}
-                    href={`${getLinkPath(suggestion.source, suggestion.slug)}`}
-                    onClick={handleSuggestionClick}
-                  >
-                    <li className="p-2 hover:bg-gray-200 rounded-md">
-                      {suggestion.title}
-                    </li>
-                  </Link>
-                ))}
-              </ul>
-            )}
-          </div>
         </div>
-
-        {/* mobile nav & mobile search bar */}
-        <div className="xl:hidden relative max-w-[166px]">
+        <div className="hidden xl:flex relative max-w-[166px]">
           <Input
             ref={inputRef}
-            placeholder="Search"
+            placeholder="Пошук"
             value={searchTerm}
             onChange={handleInputChange}
             onKeyDown={handleSearch}
@@ -132,7 +102,7 @@ const Header = () => {
           {suggestions.length > 0 && (
             <ul
               ref={suggestionBoxRef}
-              className="absolute bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
+              className="absolute z-10 bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
             >
               {suggestions.map((suggestion, idx) => (
                 <Link
@@ -148,6 +118,8 @@ const Header = () => {
             </ul>
           )}
         </div>
+
+        {/* mobile nav */}
         <div className="xl:hidden">
           <MobileNav />
         </div>

@@ -4,21 +4,21 @@ import { Play } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 
-const worksans = Play({
+const play = Play({
   subsets: ["latin"],
   weight: ["400", "700"],
-  variable: "--font-worksans"
+  variable: "--font-play"
 });
 
 export const metadata = {
   title: "GameAtlas",
-  description: "GameAtlas App",
+  description: "Where Every Game Tells a Story",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={worksans.variable}>
+      <body className={play.variable}>
         <Header />
         {children}
       </body>

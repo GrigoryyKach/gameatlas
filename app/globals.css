@@ -6,15 +6,17 @@
   body {
     @apply font-primary bg-primary text-white leading-loose;
   }
-  /* .post a {
-    @apply font-primary text-accent hover:text-accent-hover;
-  } */
   .post h1, h2, h3, h4 {
     @apply text-white
   }
   .post h1 {
     @apply text-3xl
   }
+
+  /* header .container {
+    max-width: 1500px;
+    padding-bottom: 25px;
+  } */
 
   .h1 {
     @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;

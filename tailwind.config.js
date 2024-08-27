@@ -20,7 +20,7 @@ module.exports = {
       xl: "1200px",
     },
     fontFamily: {
-      primary: "var(--font-worksans)",
+      primary: "var(--font-play)",
     },
     extend: {
       dropShadow: {
