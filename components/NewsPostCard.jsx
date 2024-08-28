@@ -3,11 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const options = { year: 'numeric', 'month': 'long', day: 'numeric' };
-  return date.toLocaleDateString('en-EN', options);
-};
+import { formatDate } from '../lib/formatDate';
 
 const NewsPostCard = ({ post }) => {
   const { title, image, created_at, id } = post;
