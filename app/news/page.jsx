@@ -3,23 +3,27 @@
 import { useEffect, useState } from "react";
 
 // components
-import PostCard from "../../components/PostCard";
+import { IoReloadCircleOutline } from "react-icons/io5";
 import { Skeleton } from '../../components/ui/skeleton';
 import NewsPostCard from "../../components/NewsPostCard";
 
 export default function NewsPage() {
   const [allNews, setAllNews] = useState([]);
+  const [visibleNews, setVisibleNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const NEWS_PER_PAGE = 9;
+  const NEWS_PER_LOAD = 9;
 
   useEffect(() => {
-    async function fetchPosts() {
+    async function fetchNews() {
       try {
         const res = await fetch('/api/News');
         const data = await res.json();
 
-        const sortedPosts = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
-        setAllNews(sortedPosts);
+        setAllNews(data);
+        setVisibleNews(data.slice(0, NEWS_PER_PAGE));
       } catch (error) {
         console.log('Ошибка при загрузке постов:', error);
       } finally {
@@ -27,8 +31,18 @@ export default function NewsPage() {
       }
     }
 
-    fetchPosts();
+    fetchNews();
   }, []);
+
+  const loadMoreNews = () => {
+    const nextPage = currentPage + 1;
+    const startIndex = NEWS_PER_PAGE + NEWS_PER_LOAD * (nextPage - 2);
+    const endIndex = startIndex + NEWS_PER_LOAD;
+    const moreNews = allNews.slice(startIndex, endIndex);
+
+    setVisibleNews([...visibleNews, ...moreNews]);
+    setCurrentPage(nextPage);
+  };
 
   return (
     <section className="h-full mb-14">
@@ -36,13 +50,13 @@ export default function NewsPage() {
         <h1 className="text-2xl font-bold mb-8">Усі новини</h1>
         <ul className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 items-center gap-[20px]">
           {isLoading ? (
-            Array.from({ length: 12 }).map((_, idx) => (
+            Array.from({ length: NEWS_PER_PAGE }).map((_, idx) => (
               <li key={idx}>
                 <Skeleton className="w-full h-64" />
               </li>
             ))
           ) : (
-            allNews.map((post, idx) => {
+            visibleNews.map((post, idx) => {
               return (
                 <li key={idx}>
                   <NewsPostCard post={post} />
@@ -51,6 +65,14 @@ export default function NewsPage() {
             })
           )}
         </ul>
+        {!isLoading && visibleNews.length < allNews.length && (
+          <div className="flex justify-center mt-10">
+            <IoReloadCircleOutline
+              className="text-4xl cursor-pointer hover:text-accent transition-colors"
+              onClick={loadMoreNews}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

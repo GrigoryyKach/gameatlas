@@ -3,12 +3,18 @@
 import { useEffect, useState } from "react";
 
 // components
+import { IoReloadCircleOutline } from "react-icons/io5";
 import PostCard from "../../components/PostCard";
 import { Skeleton } from '../../components/ui/skeleton';
 
 export default function Posts() {
   const [allPosts, setAllPosts] = useState([]);
+  const [visiblePosts, setVisiblePosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const POSTS_PER_PAGE = 12;
+  const POSTS_PER_LOAD = 9;
 
   useEffect(() => {
     async function fetchPosts() {
@@ -16,9 +22,8 @@ export default function Posts() {
         const res = await fetch('/api/posts');
         const data = await res.json();
 
-        const sortedPosts = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
-        setAllPosts(sortedPosts);
+        setAllPosts(data);
+        setVisiblePosts(data.slice(0, POSTS_PER_PAGE));
       } catch (error) {
         console.log('Ошибка при загрузке постов:', error);
       } finally {
@@ -29,19 +34,29 @@ export default function Posts() {
     fetchPosts();
   }, []);
 
+  const loadMorePosts = () => {
+    const nextPage = currentPage + 1;
+    const startIndex = POSTS_PER_PAGE + POSTS_PER_LOAD * (nextPage - 2);
+    const endIndex = startIndex + POSTS_PER_LOAD;
+    const morePosts = allPosts.slice(startIndex, endIndex);
+
+    setVisiblePosts([...visiblePosts, ...morePosts]);
+    setCurrentPage(nextPage);
+  };
+
   return (
     <section className="h-full mb-14">
       <div className="container mx-auto h-full">
         <h1 className="text-2xl font-bold mb-8">Усі пости</h1>
         <ul className="flex flex-col md:grid md:grid-cols-2 xl:grid-cols-3 items-center gap-[20px]">
           {isLoading ? (
-            Array.from({ length: 12 }).map((_, idx) => (
+            Array.from({ length: POSTS_PER_PAGE }).map((_, idx) => (
               <li key={idx}>
                 <Skeleton className="w-full h-64" />
               </li>
             ))
           ) : (
-            allPosts.map((post, idx) => {
+            visiblePosts.map((post, idx) => {
               return (
                 <li key={idx}>
                   <PostCard post={post} />
@@ -50,6 +65,14 @@ export default function Posts() {
             })
           )}
         </ul>
+        {!isLoading && visiblePosts.length < allPosts.length && (
+          <div className="flex justify-center mt-10">
+            <IoReloadCircleOutline
+              className="text-4xl cursor-pointer hover:text-accent transition-colors"
+              onClick={loadMorePosts}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

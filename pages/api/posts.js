@@ -2,7 +2,7 @@ import { query } from '../../lib/db';
 
 export default async function handler(req, res) {
   try {
-    const result = await query('SELECT * FROM post');
+    const result = await query('SELECT * FROM post ORDER BY created_at DESC');
     res.status(200).json(result.rows);
   } catch (err) {
     console.error(err);
