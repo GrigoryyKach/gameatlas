@@ -4,7 +4,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { renderContent } from '../../../lib/renderContent';
-import { FaArrowCircleUp } from 'react-icons/fa';
 import { Skeleton } from '../../../components/ui/skeleton';
 
 export default function PostPage() {
@@ -43,10 +42,6 @@ export default function PostPage() {
     fetchPost();
   }, [slug, router]);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
   if (isLoading) {
     return (
       <div className="post container mx-auto">
@@ -80,10 +75,6 @@ export default function PostPage() {
           {renderContent(post.content)}
         </div>
       </article>
-      <FaArrowCircleUp
-        onClick={scrollToTop}
-        className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
-      />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 "use client";
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 // components
+import MiniPostCard from '../../components/MiniPostCard';
 import { Skeleton } from '../../components/ui/skeleton';
 
 const Termins = () => {
-  const [termins, setTermins] = useState([]);
+  const [terms, setTerms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Termins = () => {
       try {
         const res = await fetch('/api/termins');
         const data = await res.json();
-        setTermins(data);
+        setTerms(data);
       } catch (error) {
         console.error('Ошибка при загрузке терминов:', error);
       } finally {
@@ -38,15 +38,10 @@ const Termins = () => {
               </li>
             ))
           ) : (
-            termins.map((termins, idx) => {
+            terms.map((termin, idx) => {
               return (
                 <li key={idx}>
-                  <Link
-                    href={`/terms/${termins.slug}`}
-                    className='block min-w-[300px] bg-minibg rounded-3xl border-b-2 border-accent/30 hover:border-accent transition-all'
-                  >
-                    {termins.name}
-                  </Link>
+                  <MiniPostCard post={termin} />
                 </li>
               )
             })

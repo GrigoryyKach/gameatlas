@@ -88,7 +88,7 @@ export default function PostPage() {
       </article>
 
       {/* Боковая колонка */}
-      <aside className="w-full md:w-1/4 flex-shrink-0 relative">
+      <aside className="w-full md:w-1/4 flex-shrink-0 ">
         <div className="sticky top-20">
           <h2 className="text-2xl font-semibold mb-4">Информація</h2>
           <p className='text-[#BABABF]'><span className='font-bold text-white'>Дата заснування:</span> {post.open_date}</p>
@@ -96,7 +96,7 @@ export default function PostPage() {
 
         <FaArrowCircleUp
           onClick={scrollToTop}
-          className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
+          className='right-2/4 fixed md:sticky md:top-52 md:bottom-0 bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
         />
       </aside>
     </div>

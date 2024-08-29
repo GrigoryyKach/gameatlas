@@ -1,9 +1,9 @@
 "use client";
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 // components
+import MiniPostCard from '../../components/MiniPostCard';
 import { Skeleton } from '../../components/ui/skeleton';
 
 const Genres = () => {
@@ -41,12 +41,7 @@ const Genres = () => {
             genres.map((genre, idx) => {
               return (
                 <li key={idx}>
-                  <Link
-                    href={`/genres/${genre.slug}`}
-                    className='block min-w-[300px] bg-minibg rounded-3xl border-b-2 border-accent/30 hover:border-accent transition-all'
-                  >
-                    {genre.name}
-                  </Link>
+                  <MiniPostCard post={genre} />
                 </li>
               )
             })

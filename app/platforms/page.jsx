@@ -1,9 +1,9 @@
 "use client";
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 // components
+import MiniPostCard from '../../components/MiniPostCard';
 import { Skeleton } from '../../components/ui/skeleton';
 
 const Platforms = () => {
@@ -41,12 +41,7 @@ const Platforms = () => {
             platforms.map((platform, idx) => {
               return (
                 <li key={idx}>
-                  <Link
-                    href={`/platforms/${platform.slug}`}
-                    className='block min-w-[300px] bg-minibg rounded-3xl border-b-2 border-accent/30 hover:border-accent transition-all'
-                  >
-                    {platform.name}
-                  </Link>
+                  <MiniPostCard post={platform} />
                 </li>
               )
             })

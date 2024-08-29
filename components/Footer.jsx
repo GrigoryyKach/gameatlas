@@ -22,6 +22,7 @@ const Footer = () => {
                 <Link
                   href="https://t.me/GameAtlasOfficial"
                   className="text-[#97989F] hover:text-accent"
+                  target="blank"
                 >
                   Telegram
                 </Link>
