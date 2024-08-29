@@ -2,7 +2,9 @@ import { Work_Sans } from "next/font/google";
 import { Jost } from "next/font/google";
 import { Play } from "next/font/google";
 import "./globals.css";
+
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const play = Play({
   subsets: ["latin"],
@@ -18,9 +20,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={play.variable}>
+      <body className={`${play.variable} flex flex-col relative min-h-screen`}>
         <Header />
         {children}
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </body>
     </html>
   );
