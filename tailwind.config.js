@@ -34,6 +34,7 @@ module.exports = {
         },
         secondary: "#A1A1AA",
         minibg: "#242535",
+        footer: "#141624",
         text: "#BABABF"
       },
     },

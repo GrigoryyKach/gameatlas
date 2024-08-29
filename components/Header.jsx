@@ -7,6 +7,7 @@ import Image from "next/image";
 // components
 import Nav from "./Nav";
 import MobileNav from "./MobileNav";
+import { IoSearchCircleOutline } from "react-icons/io5";
 import { Input } from "./ui/input";
 
 const Header = () => {
@@ -91,62 +92,68 @@ const Header = () => {
         <div className="hidden xl:flex justify-between items-center gap-20">
           <Nav />
         </div>
-          <div className="hidden xl:flex relative max-w-[166px]">
-            <Input
-              ref={inputRef}
-              placeholder="Пошук"
-              value={searchTerm}
-              onChange={handleInputChange}
-              onKeyDown={handleSearch}
-            />
-            {suggestions.length > 0 && (
-              <ul
-                ref={suggestionBoxRef}
-                className="absolute z-10 bg-white w-full text-black top-10 rounded-md shadow-lg z-1"
-              >
-                {suggestions.map((suggestion, idx) => (
-                  <Link
-                    key={idx}
-                    href={`${getLinkPath(suggestion.source, suggestion.slug)}`}
-                    onClick={handleSuggestionClick}
-                  >
-                    <li className="p-2 hover:bg-gray-200 rounded-md">
-                      {suggestion.title}
-                    </li>
-                  </Link>
-                ))}
-              </ul>
-            )}
-          </div>
+        <div className="hidden xl:flex relative max-w-[166px]">
+          <Input
+            ref={inputRef}
+            placeholder="Пошук"
+            value={searchTerm}
+            onChange={handleInputChange}
+            onKeyDown={handleSearch}
+          />
+          <IoSearchCircleOutline
+            className={`${searchTerm && "hidden"} text-text text-3xl absolute right-1 top-1 pointer-events-none`}
+          />
+          {suggestions.length > 0 && (
+            <ul
+              ref={suggestionBoxRef}
+              className="absolute z-10 bg-white w-full text-black top-10 rounded-md shadow-lg"
+            >
+              {suggestions.map((suggestion, idx) => (
+                <Link
+                  key={idx}
+                  href={`${getLinkPath(suggestion.source, suggestion.slug)}`}
+                  onClick={handleSuggestionClick}
+                >
+                  <li className="p-2 hover:bg-gray-200 rounded-md">
+                    {suggestion.title}
+                  </li>
+                </Link>
+              ))}
+            </ul>
+          )}
+        </div>
 
-        {/* mobile nav */}
-        <div className="xl:hidden relative max-w-[166px]">
-            <Input
-              ref={inputRef}
-              placeholder="Пошук"
-              value={searchTerm}
-              onChange={handleInputChange}
-              onKeyDown={handleSearch}
-            />
-            {suggestions.length > 0 && (
-              <ul
-                ref={suggestionBoxRef}
-                className="absolute bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
-              >
-                {suggestions.map((suggestion, idx) => (
-                  <Link
-                    key={idx}
-                    href={`${getLinkPath(suggestion.source, suggestion.slug)}`}
-                    onClick={handleSuggestionClick}
-                  >
-                    <li className="p-2 hover:bg-gray-200 rounded-md">
-                      {suggestion.title}
-                    </li>
-                  </Link>
-                ))}
-              </ul>
-            )}
-          </div>
+        {/* mobile nav & search bar */}
+        <div className="xl:hidden relative max-w-[100px] md:max-w-[166px]">
+          <Input
+            ref={inputRef}
+            placeholder="Пошук"
+            value={searchTerm}
+            onChange={handleInputChange}
+            onKeyDown={handleSearch}
+          />
+          <IoSearchCircleOutline
+            className={`${searchTerm && "hidden"} text-text text-2xl md:text-3xl absolute right-2 md:right-1 top-2 md:top-1 pointer-events-none`}
+          />
+          {suggestions.length > 0 && (
+            <ul
+              ref={suggestionBoxRef}
+              className="absolute bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
+            >
+              {suggestions.map((suggestion, idx) => (
+                <Link
+                  key={idx}
+                  href={`${getLinkPath(suggestion.source, suggestion.slug)}`}
+                  onClick={handleSuggestionClick}
+                >
+                  <li className="p-2 hover:bg-gray-200 rounded-md text-base">
+                    {suggestion.title}
+                  </li>
+                </Link>
+              ))}
+            </ul>
+          )}
+        </div>
         <div className="xl:hidden">
           <MobileNav />
         </div>

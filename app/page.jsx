@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="h-full mb-14">
+    <section className="h-full mb-[100px]">
       <div className="container mx-auto h-full">
         <h2 className="text-2xl font-bold mb-8">Останній пост</h2>
         <ul className="flex flex-col xl:grid grid-cols-1 md:grid-cols-1 items-center gap-[20px] mb-20">

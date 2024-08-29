@@ -118,7 +118,7 @@ export default function PostPage() {
 
       {/* Боковая колонка */}
       <aside className="w-full md:w-1/4 flex-shrink-0 relative">
-        <div className="sticky top-20">
+        <div className="sticky md:top-12 xl:top-20">
           <h2 className="text-2xl font-semibold mb-4">Информація</h2>
           <p className='text-text'><span className='font-bold text-white'>Дата виходу:</span> {post.release_date}</p>
           <p className='text-text'><span className='font-bold text-white'>Розробники:</span> { }
@@ -157,7 +157,7 @@ export default function PostPage() {
         </div>
         <FaArrowCircleUp
           onClick={scrollToTop}
-          className='right-2/4 fixed md:right-auto bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
+          className='right-2/4 fixed md:sticky md:top-[360px] md:bottom-0 bottom-5 text-3xl cursor-pointer text-accent hover:text-accent-hover'
         />
       </aside>
 
