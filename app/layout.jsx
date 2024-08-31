@@ -1,6 +1,7 @@
 import { Work_Sans } from "next/font/google";
 import { Jost } from "next/font/google";
 import { Play } from "next/font/google";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import "./globals.css";
 
 import Header from "../components/Header";
@@ -20,13 +21,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${play.variable} flex flex-col relative min-h-screen`}>
-        <Header />
-        {children}
-        <div className="mt-auto">
-          <Footer />
-        </div>
-      </body>
+      <UserProvider>
+        <body className={`${play.variable} flex flex-col relative min-h-screen`}>
+          <Header />
+          {children}
+          <div className="mt-auto">
+            <Footer />
+          </div>
+        </body>
+      </UserProvider>
     </html>
   );
 }
