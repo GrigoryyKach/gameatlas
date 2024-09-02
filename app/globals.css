@@ -13,10 +13,18 @@
     @apply text-3xl
   }
 
-  /* header .container {
-    max-width: 1500px;
-    padding-bottom: 25px;
-  } */
+  .post ol, ul {
+    list-style-position: inside;
+    margin-left: 0.75rem;
+  }
+
+  .post ol {
+    list-style-type: decimal;
+  }
+
+  .post ul {
+    list-style-type: disc;
+  }
 
   .h1 {
     @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
