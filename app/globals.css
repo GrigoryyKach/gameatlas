@@ -13,16 +13,16 @@
     @apply text-3xl
   }
 
-  .post ol, ul {
+  .post-content ol, .post-content ul {
     list-style-position: inside;
     margin-left: 0.75rem;
   }
 
-  .post ol {
+  .post-content ol {
     list-style-type: decimal;
   }
 
-  .post ul {
+  .post-content ul {
     list-style-type: disc;
   }
 

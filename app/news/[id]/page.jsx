@@ -8,7 +8,6 @@ import Image from 'next/image';
 import { renderContent } from '../../../lib/renderContent';
 import { formatDate } from '../../../lib/formatDate';
 
-import { FaArrowCircleUp } from "react-icons/fa";
 import { Skeleton } from '../../../components/ui/skeleton';
 import {
   Carousel,
@@ -120,8 +119,7 @@ export default function PostPage() {
         </div>
 
         {/* content */}
-        {/* <div className='text-[#BABABF]' dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} /> */}
-        <div className='text-text'>
+        <div className='text-text post-content'>
           {renderContent(post.content)}
         </div>
       </article>

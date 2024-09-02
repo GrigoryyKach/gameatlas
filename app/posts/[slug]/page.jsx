@@ -110,8 +110,7 @@ export default function PostPage() {
         </div>
 
         {/* content */}
-        {/* <div className='text-[#BABABF]' dangerouslySetInnerHTML={{ __html: renderContent(post.content) }} /> */}
-        <div className='text-text'>
+        <div className='text-text post-content'>
           {renderContent(post.content)}
         </div>
       </article>
