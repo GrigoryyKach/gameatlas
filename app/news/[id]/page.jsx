@@ -17,6 +17,30 @@ import {
   CarouselPrevious,
 } from "../../../components/ui/carousel";
 
+const ImageModal = ({ isOpen, onClose, imageSrc }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+      <div className="relative">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-white text-xl">
+          &times;
+        </button>
+        <Image
+          src={imageSrc}
+          alt="Enlarged Image"
+          width={1200}
+          height={800}
+          className="object-contain max-h-screen cursor-pointer"
+          onClick={onClose}
+        />
+      </div>
+    </div>
+  );
+};
+
 export default function PostPage() {
   const [api, setApi] = useState();
   const { id } = useParams();
@@ -24,6 +48,7 @@ export default function PostPage() {
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -64,6 +89,14 @@ export default function PostPage() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleImageClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   if (isLoading) {
@@ -141,7 +174,8 @@ export default function PostPage() {
                     alt={`Image ${idx + 1}`}
                     width={600}
                     height={400}
-                    className="object-cover"
+                    className="object-cover cursor-pointer"
+                    onClick={handleImageClick}
                   />
                 </CarouselItem>
               ))}
@@ -178,6 +212,12 @@ export default function PostPage() {
           <YouTube videoId={post.video_url.split('v=')[1]} opts={videoOptions} />
         </div>
       )}
+
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        imageSrc={`https://drive.google.com/uc?export=view&id=${post.additional_images[currentIndex]}`}
+      />
     </div>
   );
 }
