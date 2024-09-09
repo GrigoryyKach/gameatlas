@@ -217,11 +217,13 @@ export default function PostPage() {
         </div>
       )}
 
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        imageSrc={post.additional_images[currentIndex].url}
-      />
+      {!!post.additional_images.length && (
+        <ImageModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          imageSrc={post.additional_images[currentIndex].url}
+        />
+      )}
     </div>
   );
 }
