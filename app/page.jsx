@@ -7,6 +7,9 @@ import LastPostCard from "../components/LastPostCard";
 import NewsPostCard from "../components/NewsPostCard";
 import { Skeleton } from '../components/ui/skeleton';
 
+import { getStaticProps } from '../lib/getStaticProps';
+import { getLastPost, getLastNews } from '../services';
+
 export default function Home() {
   const [lastPost, setLastPost] = useState([]);
   const [latestNews, setLatestNews] = useState([]);
@@ -15,16 +18,19 @@ export default function Home() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const postRes = await fetch('/api/last-post');
-        const postData = await postRes.json();
+        const posts = await getLastPost();
+        const postsNode = posts[0];
+        // const postRes = await fetch('/api/last-post');
+        // const postData = await postRes.json();
 
-        const newsPostRes = await fetch('/api/News');
-        const newsPostData = await newsPostRes.json();
+        const news = await getLastNews();
+        // const newsPostRes = await fetch('/api/News');
+        // const newsPostData = await newsPostRes.json();
 
-        const sortedNewsPosts = newsPostData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        // const sortedNewsPosts = news.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-        setLastPost(postData);
-        setLatestNews(sortedNewsPosts.slice(0, 6));
+        setLastPost([postsNode]);
+        setLatestNews(news.slice(0, 6));
       } catch (error) {
         console.log('Ошибка при загрузке постов:', error);
       } finally {
@@ -34,7 +40,7 @@ export default function Home() {
 
     fetchPosts();
   }, []);
-
+  
   return (
     <section className="h-full mb-[100px]">
       <div className="container mx-auto h-full">

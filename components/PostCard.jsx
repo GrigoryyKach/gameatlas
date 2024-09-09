@@ -15,7 +15,7 @@ const PostCard = ({ post }) => {
     >
       <div className="flex justify-center">
         <Image
-          src={`/${image}`}
+          src={image.url}
           className="w-[360px] max-h-[202px] object-cover rounded-md mb-4"
           alt={title}
           width={360}

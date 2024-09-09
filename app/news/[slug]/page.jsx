@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import YouTube from 'react-youtube';
 import Image from 'next/image';
 
+import { getNewsDetails } from '../../../services';
+
 import { renderContent } from '../../../lib/renderContent';
 import { formatDate } from '../../../lib/formatDate';
 
@@ -43,7 +45,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
 
 export default function PostPage() {
   const [api, setApi] = useState();
-  const { id } = useParams();
+  const { slug } = useParams();
   const router = useRouter();
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -51,18 +53,20 @@ export default function PostPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    if (!id) return;
+    if (!slug) return;
 
     async function fetchPost() {
       try {
-        const res = await fetch(`/api/news/${id}`);
+        const data = await getNewsDetails(slug);
 
-        if (res.status === 404) {
-          router.replace('/404');
-          return;
-        }
+        // const res = await fetch(`/api/news/${id}`);
 
-        const data = await res.json();
+        // if (res.status === 404) {
+        //   router.replace('/404');
+        //   return;
+        // }
+
+        // const data = await res.json();
 
         if (!data) {
           router.replace('/404');
@@ -77,7 +81,7 @@ export default function PostPage() {
     }
 
     fetchPost();
-  }, [id, router]);
+  }, [slug, router]);
 
   useEffect(() => {
     if (!api) {
@@ -130,7 +134,7 @@ export default function PostPage() {
     <div className="post container mx-auto flex flex-col gap-6 mb-14">
       <div className='flex items-center justify-center'>
         <Image
-          src={`https://drive.google.com/uc?export=view&id=${post.image}`}
+          src={post.image.url}
           width={450}
           height={200}
           className='rounded-xl'
@@ -143,7 +147,7 @@ export default function PostPage() {
         {/* author & date */}
         <div className='flex flex-row mb-8 gap-4 items-center'>
           <p className="text-[#696A75]">
-            {post.author_name}
+            {post.author.name}
           </p>
           |
           <p className='text-[#696A75]'>
@@ -153,7 +157,7 @@ export default function PostPage() {
 
         {/* content */}
         <div className='text-text post-content'>
-          {renderContent(post.content)}
+          {renderContent(post.content.raw.children)}
         </div>
       </article>
 
@@ -170,7 +174,7 @@ export default function PostPage() {
                   className="flex justify-center items-center"
                 >
                   <Image
-                    src={`https://drive.google.com/uc?export=view&id=${img}`}
+                    src={img.url}
                     alt={`Image ${idx + 1}`}
                     width={600}
                     height={400}
@@ -195,7 +199,7 @@ export default function PostPage() {
                 className={`box-border p-1 ${currentIndex === idx ? 'border-2 border-accent' : ''}`}
               >
                 <Image
-                  src={`https://drive.google.com/uc?export=view&id=${img}`}
+                  src={img.url}
                   width={100}
                   height={60}
                   alt={`Thumbnail ${idx + 1}`}
@@ -216,7 +220,7 @@ export default function PostPage() {
       <ImageModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        imageSrc={`https://drive.google.com/uc?export=view&id=${post.additional_images[currentIndex]}`}
+        imageSrc={post.additional_images[currentIndex].url}
       />
     </div>
   );

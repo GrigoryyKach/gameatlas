@@ -3,12 +3,16 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { getPostDetails } from '../../../services';
+
 import { renderContent } from '../../../lib/renderContent';
 import { formatDate } from '../../../lib/formatDate';
 import { slugify } from '../../../lib/slugify';
 
 import { FaArrowCircleUp } from "react-icons/fa";
 import { Skeleton } from '../../../components/ui/skeleton';
+import { Comments } from "../../../components/Comments";
+import { CommentsForm } from "../../../components/CommentsForm";
 
 export default function PostPage() {
   const { slug } = useParams();
@@ -21,14 +25,8 @@ export default function PostPage() {
 
     async function fetchPost() {
       try {
-        const res = await fetch(`/api/posts/${slug}`);
-
-        if (res.status === 404) {
-          router.replace('/404');
-          return;
-        }
-
-        const data = await res.json();
+        const data = await getPostDetails(slug);
+        // console.log(data.content.raw.children);
 
         if (!data) {
           router.replace('/404');
@@ -101,7 +99,7 @@ export default function PostPage() {
         {/* author & date */}
         <div className='flex flex-row mb-8 gap-4 items-center'>
           <p className="text-[#696A75]">
-            {post.author_name}
+            {post.author.name}
           </p>
           |
           <p className='text-[#696A75]'>
@@ -111,7 +109,7 @@ export default function PostPage() {
 
         {/* content */}
         <div className='text-text post-content'>
-          {renderContent(post.content)}
+          {renderContent(post.content.raw.children)}
         </div>
       </article>
 

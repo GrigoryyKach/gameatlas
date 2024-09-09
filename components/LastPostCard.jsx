@@ -5,7 +5,6 @@ import { formatDate } from '../lib/formatDate';
 
 const LastPostCard = ({ post }) => {
   const { title, image, genres, slug, created_at } = post;
-
   const staticGenres = genres.slice(0, 1);
 
   return (
@@ -14,7 +13,7 @@ const LastPostCard = ({ post }) => {
       className="bg-gradient-to-r from-accent/50 relative p-4 xl:p-8 flex flex-col xl:flex-row xl:justify-around items-center xl:gap-8 xl:items- border border-[#242535] rounded-lg hover:shadow-accent/10 hover:shadow-lg hover:scale-105 transition-all"
     >
       <Image
-        src={`/${image}`}
+        src={image.url}
         className="w-[360px] object-contain rounded-md mb-4 xl:mb-0"
         alt={title}
         width={360}

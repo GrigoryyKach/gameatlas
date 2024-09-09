@@ -3,6 +3,8 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { getGenreDetails } from '../../../services';
+
 import { renderContent } from '../../../lib/renderContent';
 import { Skeleton } from '../../../components/ui/skeleton';
 
@@ -17,14 +19,16 @@ export default function PostPage() {
 
     async function fetchPost() {
       try {
-        const res = await fetch(`/api/genres/${slug}`);
+        const data = await getGenreDetails(slug);
 
-        if (res.status === 404) {
-          router.replace('/404');
-          return;
-        }
+        // const res = await fetch(`/api/genres/${slug}`);
 
-        const data = await res.json();
+        // if (res.status === 404) {
+        //   router.replace('/404');
+        //   return;
+        // }
+
+        // const data = await res.json();
 
         if (!data) {
           router.replace('/404');
@@ -66,12 +70,12 @@ export default function PostPage() {
 
         {/* author */}
         <p className="text-[#696A75] mb-8">
-          {post.author_name}
+          {post.author.name}
         </p>
 
         {/* content */}
         <div className='text-[#BABABF] post-content'>
-          {renderContent(post.content)}
+          {renderContent(post.content.raw.children)}
         </div>
       </article>
     </div>
