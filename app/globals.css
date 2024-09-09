@@ -6,17 +6,27 @@
   body {
     @apply font-primary bg-primary text-white leading-loose;
   }
-  .post h1, h2, h3, h4 {
-    @apply text-white
+  .post h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-white;
   }
   .post h1 {
-    @apply text-3xl
+    @apply text-3xl;
   }
 
-  .post-content ol, .post-content ul {
+  /* .post-content .blockquote p {
+    border: 4px;
+
+    border-color: white;
+
+  } */
+
+  /* .post-content ol, .post-content ul {
     list-style-position: inside;
     margin-left: 0.75rem;
-  }
+  } */
 
   .post-content ol {
     list-style-type: decimal;

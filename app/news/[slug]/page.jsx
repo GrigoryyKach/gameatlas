@@ -58,7 +58,8 @@ export default function PostPage() {
     async function fetchPost() {
       try {
         const data = await getNewsDetails(slug);
-
+        console.log(data);
+        
         // const res = await fetch(`/api/news/${id}`);
 
         // if (res.status === 404) {
@@ -138,6 +139,7 @@ export default function PostPage() {
           width={450}
           height={200}
           className='rounded-xl'
+          alt={post.title}
         />
       </div>
       {/* Основной контент */}
