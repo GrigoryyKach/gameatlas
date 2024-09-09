@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import MiniPostCard from '../../components/MiniPostCard';
 import { Skeleton } from '../../components/ui/skeleton';
 
+import { getPlatforms } from '../../services';
+
 const Platforms = () => {
   const [platforms, setPlatforms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,9 +15,12 @@ const Platforms = () => {
   useEffect(() => {
     async function fetchPlatforms() {
       try {
-        const res = await fetch('/api/platforms');
-        const data = await res.json();
-        setPlatforms(data);
+        const platforms = await getPlatforms();
+        console.log(platforms)
+
+        // const res = await fetch('/api/platforms');
+        // const data = await res.json();
+        setPlatforms(platforms);
       } catch (error) {
         console.error('Ошибка при загрузке платформ:', error);
       } finally {

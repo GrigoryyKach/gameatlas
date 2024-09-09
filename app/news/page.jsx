@@ -7,6 +7,8 @@ import { IoReloadCircleOutline } from "react-icons/io5";
 import { Skeleton } from '../../components/ui/skeleton';
 import NewsPostCard from "../../components/NewsPostCard";
 
+import { getNews } from '../../services';
+
 export default function NewsPage() {
   const [allNews, setAllNews] = useState([]);
   const [visibleNews, setVisibleNews] = useState([]);
@@ -19,11 +21,14 @@ export default function NewsPage() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const res = await fetch('/api/News');
-        const data = await res.json();
+        const news = await getNews();
+        // const newsNode = news[0].node;
 
-        setAllNews(data);
-        setVisibleNews(data.slice(0, NEWS_PER_PAGE));
+        // const res = await fetch('/api/News');
+        // const data = await res.json();
+
+        setAllNews(news);
+        setVisibleNews(news.slice(0, NEWS_PER_PAGE));
       } catch (error) {
         console.log('Ошибка при загрузке постов:', error);
       } finally {

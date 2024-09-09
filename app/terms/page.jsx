@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import MiniPostCard from '../../components/MiniPostCard';
 import { Skeleton } from '../../components/ui/skeleton';
 
+import { getTerms } from '../../services';
+
 const Termins = () => {
   const [terms, setTerms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,9 +15,11 @@ const Termins = () => {
   useEffect(() => {
     async function fetchTermins() {
       try {
-        const res = await fetch('/api/termins');
-        const data = await res.json();
-        setTerms(data);
+        const terms = await getTerms();
+
+        // const res = await fetch('/api/termins');
+        // const data = await res.json();
+        setTerms(terms);
       } catch (error) {
         console.error('Ошибка при загрузке терминов:', error);
       } finally {

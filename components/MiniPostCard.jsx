@@ -19,7 +19,7 @@ const MiniPostCard = ({ post }) => {
       href={`${getLinkPath(post.source, post.slug)}`}
       className='block min-w-[300px] bg-minibg rounded-3xl border-b-2 border-accent/30 hover:border-accent transition-all'
     >
-      {post.name}
+      {post.title}
     </Link>
   )
 }

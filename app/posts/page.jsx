@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { getPosts } from "../../services";
+
 // components
 import { IoReloadCircleOutline } from "react-icons/io5";
 import PostCard from "../../components/PostCard";
@@ -19,11 +21,15 @@ export default function Posts() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const res = await fetch('/api/posts');
-        const data = await res.json();
+        const posts = await getPosts();
+        
+        // const postsNode = posts[0].node;
+        // const res = await fetch('/api/posts');
+        // const data = await res.json();
 
-        setAllPosts(data);
-        setVisiblePosts(data.slice(0, POSTS_PER_PAGE));
+        
+        setAllPosts(posts);
+        setVisiblePosts(posts.slice(0, POSTS_PER_PAGE));
       } catch (error) {
         console.log('Ошибка при загрузке постов:', error);
       } finally {
@@ -33,6 +39,7 @@ export default function Posts() {
 
     fetchPosts();
   }, []);
+  // console.log(visiblePosts);
 
   const loadMorePosts = () => {
     const nextPage = currentPage + 1;

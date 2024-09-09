@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import MiniPostCard from '../../components/MiniPostCard';
 import { Skeleton } from '../../components/ui/skeleton';
 
+import { getGenres } from '../../services';
+
 const Genres = () => {
   const [genres, setGenres] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,9 +15,11 @@ const Genres = () => {
   useEffect(() => {
     async function fetchGenres() {
       try {
-        const res = await fetch('/api/genres');
-        const data = await res.json();
-        setGenres(data);
+        const genres = await getGenres();
+
+        // const res = await fetch('/api/genres');
+        // const data = await res.json();
+        setGenres(genres);
       } catch (error) {
         console.error('Ошибка при загрузке жанров:', error);
       } finally {
