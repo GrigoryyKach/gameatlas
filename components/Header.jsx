@@ -32,6 +32,7 @@ const Header = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+    
   }, []);
 
   const handleInputChange = async (e) => {
@@ -60,15 +61,15 @@ const Header = () => {
 
   const getLinkPath = (table, slug) => {
     switch (table) {
-      case 'post':
+      case 'Post':
         return `/posts/${slug}`;
-      case 'termin':
+      case 'Term':
         return `/terms/${slug}`;
-      case 'genre':
+      case 'Genre':
         return `/genres/${slug}`;
-      case 'platform':
+      case 'Platform':
         return `/platforms/${slug}`;
-      case 'company':
+      case 'Company':
         return `/companies/${slug}`;
       default:
         return `/`;
@@ -138,7 +139,7 @@ const Header = () => {
           {suggestions.length > 0 && (
             <ul
               ref={suggestionBoxRef}
-              className="absolute bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
+              className="absolute z-10 bg-white w-full text-black mt-1 rounded-md shadow-lg z-1"
             >
               {suggestions.map((suggestion, idx) => (
                 <Link

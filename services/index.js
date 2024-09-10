@@ -340,6 +340,22 @@ export const getTermDetails = async (slug) => {
   return res.term;
 }
 
+export const getCompanies = async (slug) => {
+  const query = gql`
+    query GetCompanies {
+      companies {
+        slug
+        title
+        source
+      }
+    }
+  `
+
+  const res = await request(graphqlApi, query, { slug });
+
+  return res.companies;
+}
+
 export const getCompanyDetails = async (slug) => {
   const query = gql`
     query GetCompanyDetails($slug: String!) {
@@ -348,7 +364,7 @@ export const getCompanyDetails = async (slug) => {
           name
         }
         slug
-        name
+        title
         open_date
         content {
           raw

@@ -6,15 +6,15 @@ import Link from 'next/link';
 
 const getLinkPath = (table, slug) => {
   switch (table) {
-    case 'post':
+    case 'Post':
       return `/posts/${slug}`;
-    case 'termin':
+    case 'Term':
       return `/terms/${slug}`;
-    case 'genre':
+    case 'Genre':
       return `/genres/${slug}`;
-    case 'platform':
+    case 'Platform':
       return `/platforms/${slug}`;
-    case 'company':
+    case 'Company':
       return `/companies/${slug}`;
     default:
       return `/`;
