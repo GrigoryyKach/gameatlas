@@ -7,7 +7,6 @@ import LastPostCard from "../components/LastPostCard";
 import NewsPostCard from "../components/NewsPostCard";
 import { Skeleton } from '../components/ui/skeleton';
 
-import { getStaticProps } from '../lib/getStaticProps';
 import { getLastPost, getLastNews } from '../services';
 
 export default function Home() {
