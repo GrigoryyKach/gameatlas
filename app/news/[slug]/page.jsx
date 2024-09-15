@@ -58,7 +58,6 @@ export default function PostPage() {
     async function fetchPost() {
       try {
         const data = await getNewsDetails(slug);
-        console.log(data);
         
         // const res = await fetch(`/api/news/${id}`);
 
