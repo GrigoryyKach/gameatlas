@@ -21,10 +21,19 @@ const Footer = () => {
               <li>
                 <Link
                   href="https://t.me/GameAtlasOfficial"
-                  className="text-[#97989F] hover:text-accent"
+                  className="text-[#97989F] hover:text-accent transition-all"
                   target="blank"
                 >
                   Telegram
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://discord.gg/2DMFjPUFbP"
+                  className="text-[#97989F] hover:text-accent transition-all"
+                  target="blank"
+                >
+                  Discord
                 </Link>
               </li>
             </ul>
