@@ -1,6 +1,5 @@
-import { Work_Sans } from "next/font/google";
-import { Jost } from "next/font/google";
-import { Play } from "next/font/google";
+import { Analytics } from '@vercel/analytics/react';
+import { Play } from "next/font/google"
 import "./globals.css";
 
 import Header from "../components/Header";
@@ -26,6 +25,7 @@ export default function RootLayout({ children }) {
         <div className="mt-auto">
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
