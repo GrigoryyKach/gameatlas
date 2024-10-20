@@ -22,22 +22,13 @@ export default function PostPage() {
       try {
         const data = await getCompanyDetails(slug);
 
-        // const res = await fetch(`/api/companies/${slug}`);
-
-        // if (res.status === 404) {
-        //   router.replace('/404');
-        //   return;
-        // }
-
-        // const data = await res.json();
-
         if (!data) {
           router.replace('/404');
         } else {
           setPost(data);
         }
       } catch (error) {
-        console.error('Ошибка при загрузке поста:', error);
+        console.error('Помилка при завантаженні посту:', error);
         router.replace('/404');
       } finally {
         setIsLoading(false);
@@ -76,7 +67,7 @@ export default function PostPage() {
 
   return (
     <div className="post container mx-auto flex flex-col-reverse md:flex-row gap-8 mb-14">
-      {/* Основной контент */}
+      {/* main */}
       <article className="w-full md:w-5/6">
         <h1 className="text-4xl font-bold mb-5">{post.name}</h1>
 
@@ -91,7 +82,7 @@ export default function PostPage() {
         </div>
       </article>
 
-      {/* Боковая колонка */}
+      {/* sidebar */}
       <aside className="w-full md:w-1/4 flex-shrink-0 ">
         <div className="sticky top-20">
           <h2 className="text-2xl font-semibold mb-4">Информація</h2>

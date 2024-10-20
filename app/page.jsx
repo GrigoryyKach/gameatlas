@@ -19,19 +19,13 @@ export default function Home() {
       try {
         const posts = await getLastPost();
         const postsNode = posts[0];
-        // const postRes = await fetch('/api/last-post');
-        // const postData = await postRes.json();
 
         const news = await getLastNews();
-        // const newsPostRes = await fetch('/api/News');
-        // const newsPostData = await newsPostRes.json();
-
-        // const sortedNewsPosts = news.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
         setLastPost([postsNode]);
         setLatestNews(news.slice(0, 6));
       } catch (error) {
-        console.log('Ошибка при загрузке постов:', error);
+        console.log('Помилка при завантаженні постів:', error);
       } finally {
         setIsLoading(false);
       }

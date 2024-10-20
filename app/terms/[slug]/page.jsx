@@ -20,15 +20,6 @@ export default function PostPage() {
     async function fetchPost() {
       try {
         const data = await getTermDetails(slug);
-        
-        // const res = await fetch(`/api/termins/${slug}`);
-
-        // if (res.status === 404) {
-        //   router.replace('/404');
-        //   return;
-        // }
-
-        // const data = await res.json();
 
         if (!data) {
           router.replace('/404');
@@ -36,7 +27,7 @@ export default function PostPage() {
           setPost(data);
         }
       } catch (error) {
-        console.error('Ошибка при загрузке поста:', error);
+        console.error('Помилка при завантаженні посту:', error);
       } finally {
         setIsLoading(false);
       }

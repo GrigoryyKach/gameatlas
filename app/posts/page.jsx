@@ -22,16 +22,11 @@ export default function Posts() {
     async function fetchPosts() {
       try {
         const posts = await getPosts();
-        
-        // const postsNode = posts[0].node;
-        // const res = await fetch('/api/posts');
-        // const data = await res.json();
 
-        
         setAllPosts(posts);
         setVisiblePosts(posts.slice(0, POSTS_PER_PAGE));
       } catch (error) {
-        console.log('Ошибка при загрузке постов:', error);
+        console.log('Помилка при завантаженні постів:', error);
       } finally {
         setIsLoading(false);
       }
@@ -39,7 +34,6 @@ export default function Posts() {
 
     fetchPosts();
   }, []);
-  // console.log(visiblePosts);
 
   const loadMorePosts = () => {
     const nextPage = currentPage + 1;

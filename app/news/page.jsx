@@ -22,15 +22,11 @@ export default function NewsPage() {
     async function fetchNews() {
       try {
         const news = await getNews();
-        // const newsNode = news[0].node;
-
-        // const res = await fetch('/api/News');
-        // const data = await res.json();
 
         setAllNews(news);
         setVisibleNews(news.slice(0, NEWS_PER_PAGE));
       } catch (error) {
-        console.log('Ошибка при загрузке постов:', error);
+        console.log('Помилка при завантаженні новин:', error);
       } finally {
         setIsLoading(false);
       }

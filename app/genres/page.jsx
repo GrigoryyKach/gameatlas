@@ -17,11 +17,9 @@ const Genres = () => {
       try {
         const genres = await getGenres();
 
-        // const res = await fetch('/api/genres');
-        // const data = await res.json();
         setGenres(genres);
       } catch (error) {
-        console.error('Ошибка при загрузке жанров:', error);
+        console.error('Помилка при завантаженні жанрів:', error);
       } finally {
         setIsLoading(false);
       }

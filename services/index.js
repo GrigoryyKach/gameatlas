@@ -205,10 +205,6 @@ export const getGenres = async () => {
   }
 
   return allGenres;
-
-  // const res = await request(graphqlApi, query);
-
-  // return res.genres;
 }
 
 export const getGenreDetails = async (slug) => {
@@ -261,10 +257,6 @@ export const getPlatforms = async () => {
   }
 
   return allPlatforms;
-
-  // const res = await request(graphqlApi, query);
-
-  // return res.platforms;
 }
 
 export const getPlatformDetails = async (slug) => {

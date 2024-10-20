@@ -17,11 +17,9 @@ const Termins = () => {
       try {
         const terms = await getTerms();
 
-        // const res = await fetch('/api/termins');
-        // const data = await res.json();
         setTerms(terms);
       } catch (error) {
-        console.error('Ошибка при загрузке терминов:', error);
+        console.error('Помилка при завантаженні термінів:', error);
       } finally {
         setIsLoading(false);
       }

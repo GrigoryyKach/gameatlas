@@ -6,7 +6,7 @@ import SearchResults from '../../components/SearchResults';
 const SearchPage = () => {
   return (
     <div className="container mx-auto py-8">
-      <Suspense fallback={<p>Загрузка пошукового запросу...</p>}>
+      <Suspense fallback={<p>Завантаження пошукового запросу...</p>}>
         <SearchResults />
       </Suspense>
     </div>

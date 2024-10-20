@@ -26,7 +26,6 @@ export default function PostPage() {
     async function fetchPost() {
       try {
         const data = await getPostDetails(slug);
-        // console.log(data.content.raw.children);
 
         if (!data) {
           router.replace('/404');
@@ -34,7 +33,7 @@ export default function PostPage() {
           setPost(data);
         }
       } catch (error) {
-        console.error('Ошибка при загрузке поста:', error);
+        console.error('Помилка при завантаженні посту:', error);
       } finally {
         setIsLoading(false);
       }
@@ -76,7 +75,7 @@ export default function PostPage() {
 
   return (
     <div className="post container mx-auto flex flex-col-reverse md:flex-row gap-8 mb-14">
-      {/* Основной контент */}
+      {/* main */}
       <article className="w-full md:w-5/6">
         <h1 className="text-4xl font-bold mb-5">{post.title}</h1>
 
@@ -113,7 +112,7 @@ export default function PostPage() {
         </div>
       </article>
 
-      {/* Боковая колонка */}
+      {/* sidebar */}
       <aside className="w-full md:w-1/4 flex-shrink-0">
         <div className="sticky md:top-12 xl:top-20">
           <h2 className="text-2xl font-semibold mb-4">Информація</h2>

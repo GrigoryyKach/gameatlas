@@ -18,11 +18,9 @@ const Platforms = () => {
         const platforms = await getPlatforms();
         console.log(platforms)
 
-        // const res = await fetch('/api/platforms');
-        // const data = await res.json();
         setPlatforms(platforms);
       } catch (error) {
-        console.error('Ошибка при загрузке платформ:', error);
+        console.error('Помилка при завантаженні платформ:', error);
       } finally {
         setIsLoading(false);
       }

@@ -58,15 +58,6 @@ export default function PostPage() {
     async function fetchPost() {
       try {
         const data = await getNewsDetails(slug);
-        
-        // const res = await fetch(`/api/news/${id}`);
-
-        // if (res.status === 404) {
-        //   router.replace('/404');
-        //   return;
-        // }
-
-        // const data = await res.json();
 
         if (!data) {
           router.replace('/404');
@@ -74,7 +65,7 @@ export default function PostPage() {
           setPost(data);
         }
       } catch (error) {
-        console.error('Ошибка при загрузке поста:', error);
+        console.error('Помилка при завантаженні посту:', error);
       } finally {
         setIsLoading(false);
       }
@@ -141,7 +132,7 @@ export default function PostPage() {
           alt={post.title}
         />
       </div>
-      {/* Основной контент */}
+      {/* main */}
       <article className="w-full">
         <h1 className="text-4xl font-bold mb-5">{post.title}</h1>
 

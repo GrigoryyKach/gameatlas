@@ -1,18 +1,13 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import Link from "next/link";
 import Image from "next/image";
 
 const Custom404 = () => {
   const router = useRouter();
 
-  const goBack = () => {
-    if (typeof window !== 'undefined' && window.history.length > 1) {
-      router.back();
-    } else {
+  const goHome = () => {
       router.push('/');
-    }
   };
 
   return (
@@ -29,10 +24,10 @@ const Custom404 = () => {
       <h2 className="text-3xl mb-6">Буу! Сторінку не знайдено!</h2>
 
       <button
-        onClick={goBack}
+        onClick={goHome}
         className='text-xl py-4 px-12 bg-minibg rounded-full'
       >
-        Повернутися
+        На головну
       </button>
     </div>
   )

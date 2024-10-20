@@ -21,22 +21,13 @@ export default function PostPage() {
       try {
         const data = await getGenreDetails(slug);
 
-        // const res = await fetch(`/api/genres/${slug}`);
-
-        // if (res.status === 404) {
-        //   router.replace('/404');
-        //   return;
-        // }
-
-        // const data = await res.json();
-
         if (!data) {
           router.replace('/404');
         } else {
           setPost(data);
         }
       } catch (error) {
-        console.error('Ошибка при загрузке поста:', error);
+        console.error('Помилка при завантаженні посту:', error);
         router.replace('/404');
       } finally {
         setIsLoading(false);
