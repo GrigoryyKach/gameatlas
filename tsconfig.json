@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/ui/carousel.tsx", "components/ui/button.tsx"  ],
   "exclude": [
     "node_modules"
   ]
