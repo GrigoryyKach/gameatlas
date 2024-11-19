@@ -11,37 +11,7 @@ import { renderContent } from '../../../lib/renderContent';
 import { formatDate } from '../../../lib/formatDate';
 
 import { Skeleton } from '../../../components/ui/skeleton';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../../../components/ui/carousel";
-
-const ImageModal = ({ isOpen, onClose, imageSrc }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-      <div className="relative">
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-white text-xl">
-          &times;
-        </button>
-        <Image
-          src={imageSrc}
-          alt="Enlarged Image"
-          width={1200}
-          height={800}
-          className="object-contain max-h-screen cursor-pointer"
-          onClick={onClose}
-        />
-      </div>
-    </div>
-  );
-};
+import {CustomCarousel} from "../../../components/CustomCarousel"
 
 export default function PostPage() {
   const [api, setApi] = useState();
@@ -50,7 +20,6 @@ export default function PostPage() {
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
@@ -81,18 +50,6 @@ export default function PostPage() {
 
     api.scrollTo(currentIndex);
   }, [currentIndex, api]);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleImageClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   if (isLoading) {
     return (
@@ -154,67 +111,15 @@ export default function PostPage() {
       </article>
 
       {!!post.additional_images.length && (
-        <div className='flex flex-col justify-center relative mx-auto w-full max-w-4xl'>
-          <Carousel
-            setApi={setApi}
-            className="flex justify-center items-center relative"
-          >
-            <CarouselContent>
-              {post.additional_images.map((img, idx) => (
-                <CarouselItem
-                  key={idx}
-                  className="flex justify-center items-center"
-                >
-                  <Image
-                    src={img.url}
-                    alt={`Image ${idx + 1}`}
-                    width={600}
-                    height={400}
-                    className="object-cover cursor-pointer"
-                    onClick={handleImageClick}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious
-              onClick={() => setCurrentIndex(currentIndex - 1)}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 text-white hover:text-accent" />
-            <CarouselNext
-              onClick={() => setCurrentIndex(currentIndex + 1)}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 text-white hover:text-accent" />
-          </Carousel>
-          <div className="hidden md:flex justify-center mt-4 gap-1">
-            {post.additional_images.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                className={`box-border p-1 ${currentIndex === idx ? 'border-2 border-accent' : ''}`}
-              >
-                <Image
-                  src={img.url}
-                  width={100}
-                  height={60}
-                  alt={`Thumbnail ${idx + 1}`}
-                  className="box-border object-cover max-h-[60px]"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <CustomCarousel
+    images={post.additional_images.map((img) => ({ url: img.url }))}
+  />
       )}
 
       {!!post.video_url && (
         <div className='max-w-[800px]'>
           <YouTube videoId={post.video_url.split('v=')[1]} opts={videoOptions} />
         </div>
-      )}
-
-      {!!post.additional_images.length && (
-        <ImageModal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          imageSrc={post.additional_images[currentIndex].url}
-        />
       )}
     </div>
   );
