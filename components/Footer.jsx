@@ -1,5 +1,8 @@
-import Link from "next/link";
-import Image from "next/image";
+import Image from "next/image"
+import Link from "next/link"
+
+import { FaTelegram, FaTiktok, FaYoutube } from "react-icons/fa"
+import { FaDiscord } from "react-icons/fa6"
 
 const Footer = () => {
   return (
@@ -21,19 +24,37 @@ const Footer = () => {
               <li>
                 <Link
                   href="https://t.me/GameAtlasOfficial"
-                  className="text-[#97989F] hover:text-accent transition-all"
+                  className="text-[#97989F] flex items-center hover:text-accent transition-all"
                   target="blank"
                 >
-                  Telegram
+                  <FaTelegram className='text-md mr-2' /> Telegram
                 </Link>
               </li>
               <li>
                 <Link
                   href="https://discord.gg/2DMFjPUFbP"
-                  className="text-[#97989F] hover:text-accent transition-all"
+                  className="text-[#97989F] flex items-center hover:text-accent transition-all"
                   target="blank"
                 >
-                  Discord
+                  <FaDiscord className='text-md mr-2' /> Discord
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.tiktok.com/@gameatlasofficial"
+                  className="text-[#97989F] flex items-center hover:text-accent transition-all"
+                  target="blank"
+                >
+                  <FaTiktok className='text-md mr-2' /> TikTok
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.youtube.com/@GameAtlasOfficial"
+                  className="text-[#97989F] flex items-center hover:text-accent transition-all"
+                  target="blank"
+                >
+                  <FaYoutube className='text-md mr-2' /> YouTube
                 </Link>
               </li>
             </ul>
@@ -57,6 +78,6 @@ const Footer = () => {
       </div>
     </footer>
   )
-};
+}
 
-export default Footer;
+export default Footer
