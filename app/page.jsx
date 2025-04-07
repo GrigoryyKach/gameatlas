@@ -7,7 +7,7 @@ import LastPostCard from "../components/LastPostCard";
 import NewsPostCard from "../components/NewsPostCard";
 import { Skeleton } from '../components/ui/skeleton';
 
-import { getLastPost, getLastNews } from '../services';
+import { getLastNews, getLastPost } from '../services';
 
 export default function Home() {
   const [lastPost, setLastPost] = useState([]);
@@ -33,10 +33,18 @@ export default function Home() {
 
     fetchPosts();
   }, []);
-  
+
   return (
     <section className="h-full mb-[100px]">
       <div className="container mx-auto h-full">
+        <div className='mb-10'>
+          <h1 className="text-3xl font-bold mb-4">
+            GameAtlas — енциклопедія ігор для справжніх геймерів
+          </h1>
+          <p className="text-lg text-[#97989F] max-w-4xl">
+            Ласкаво просимо на <span className='text-text'>GameAtlas</span> — унікальний український проєкт, де ви знайдете найсвіжіші новини про відеоігри, глибокі огляди, детальні описи жанрів, платформ та улюблених ігор. Наш сайт створено для справжніх геймерів і всіх, хто цікавиться індустрією відеоігор.
+          </p>
+        </div>
         <h2 className="text-2xl font-bold mb-8">Останній пост</h2>
         <ul className="flex flex-col xl:grid grid-cols-1 md:grid-cols-1 items-center gap-[20px] mb-20">
           {isLoading ? (
