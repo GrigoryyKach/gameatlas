@@ -15,6 +15,9 @@ const play = Play({
 export const metadata = {
   title: "GameAtlas",
   description: "Where Every Game Tells a Story",
+  other: {
+    "google-site-verification": "bGKDwoty_91oVIz6cK9W9LCeGq1v1LIS-jaV8RKh_II"
+  }
 }
 
 export default function RootLayout({ children }) {
