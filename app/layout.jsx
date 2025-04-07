@@ -14,7 +14,36 @@ const play = Play({
 
 export const metadata = {
   title: "GameAtlas",
-  description: "Where Every Game Tells a Story",
+  description: "GameAtlas — Енциклопедія ігор, новини та геймерський контент",
+  keywords: [
+    "GameAtlas",
+    "ігрова енциклопедія",
+    "ігри",
+    "новини ігор",
+    "огляди ігор",
+    "жанри ігор",
+    "платформи ігор",
+    "геймерські новини",
+    "українські ігри",
+    "індустрія відеоігор",
+    "відеоігори",
+    "пости про ігри",
+  ],
+  openGraph: {
+    title: "GameAtlas — Твоя енциклопедія ігор",
+    description: "Читайте новини, огляди та відкрийте для себе нові ігри з GameAtlas.",
+    url: "https://gameatlas.vercel.app/",
+    siteName: "GameAtlas",
+    images: [
+      {
+        url: "https://gameatlas.vercel.app/assets/Logo-final.jpg",
+        width: 1200,
+        height: 630,
+        alt: "GameAtlas — логотип"
+      }
+    ],
+    type: "website"
+  },
   other: {
     "google-site-verification": "bGKDwoty_91oVIz6cK9W9LCeGq1v1LIS-jaV8RKh_II"
   }

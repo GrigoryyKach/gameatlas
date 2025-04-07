@@ -11,8 +11,8 @@ import { slugify } from '../../../lib/slugify';
 
 import { FaArrowCircleUp } from "react-icons/fa";
 import { Skeleton } from '../../../components/ui/skeleton';
-import { Comments } from "../../../components/Comments";
-import { CommentsForm } from "../../../components/CommentsForm";
+// import { Comments } from "../../../components/Comments";
+// import { CommentsForm } from "../../../components/CommentsForm";
 
 export default function PostPage() {
   const { slug } = useParams();

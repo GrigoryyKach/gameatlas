@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://gameatlas.vercel.app/
+
+# Sitemaps
+Sitemap: https://gameatlas.vercel.app/sitemap.xml
